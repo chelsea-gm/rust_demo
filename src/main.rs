@@ -1,7 +1,16 @@
+/**
+ * Chelsea Meyers
+ *
+ * rust_demo - a standalone application showcasing some basic 2D features
+ * This demo uses a Rust binding of Raylib.
+ *
+ **/
+
 extern crate raylib;
 
 use raylib::prelude::*;
 
+// GameState - a data structure used to keep track of state info
 struct GameState {
     player_x: i32,
     player_y: i32,
@@ -17,6 +26,7 @@ struct GameState {
     respectful: bool,
 }
 
+// get_next_color - look up next color for switching player color using 'C'
 fn get_next_color(player_color: Color) -> Color
 {
     if player_color == Color::BLACK
@@ -35,6 +45,7 @@ fn get_next_color(player_color: Color) -> Color
     return Color::BLACK;
 }
 
+// Application Entry Point
 fn main() {
     let screen_width = 800;
     let screen_height = 600;
