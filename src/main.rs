@@ -138,26 +138,26 @@ fn main() {
         // Move
         if rl.is_key_down(raylib::consts::KeyboardKey::KEY_W)
         {
-             game_state.player_down_up = -2;
+             game_state.player_down_up = -1;
              game_state.player_right_left = 0;
              game_state.player_y = update_pos(game_state.player_y, player_speed * game_state.player_down_up, screen_height);
          }
          else if rl.is_key_down(raylib::consts::KeyboardKey::KEY_A)
          {
              game_state.player_down_up = 0;
-             game_state.player_right_left = -2;
+             game_state.player_right_left = -1;
              game_state.player_x = update_pos(game_state.player_x, player_speed * game_state.player_right_left, screen_width);
          }
          else if rl.is_key_down(raylib::consts::KeyboardKey::KEY_S)
          {
-             game_state.player_down_up = 2;
+             game_state.player_down_up = 1;
              game_state.player_right_left = 0;
              game_state.player_y = update_pos(game_state.player_y, player_speed * game_state.player_down_up, screen_height);
          }
          else if rl.is_key_down(raylib::consts::KeyboardKey::KEY_D)
          {
              game_state.player_down_up = 0;
-             game_state.player_right_left = 2;
+             game_state.player_right_left = 1;
              game_state.player_x = update_pos(game_state.player_x, player_speed * game_state.player_right_left, screen_width);
          }
         
@@ -179,25 +179,25 @@ fn main() {
         }
         else if game_state.sword_state == 1
         {
-            if game_state.player_down_up == -2
+            if game_state.player_down_up == -1
             {
                 d.draw_text("Upward strike!", 10, 30, 20, Color::BLACK);
-                d.draw_rectangle(game_state.player_x, game_state.player_y - 35, 5, 30, Color::LIGHTGRAY);
-             }
-            else if game_state.player_down_up == 2
+                d.draw_rectangle(game_state.player_x - 2, game_state.player_y - 35, 5, 30, Color::LIGHTGRAY);
+            }
+            else if game_state.player_down_up == 1
             {
                 d.draw_text("Downward strike!", 10, 30, 20, Color::BLACK);
-                d.draw_rectangle(game_state.player_x, game_state.player_y + 5, 5, 30, Color::LIGHTGRAY);
+                d.draw_rectangle(game_state.player_x - 2, game_state.player_y + 5, 5, 30, Color::LIGHTGRAY);
             }
-            else if game_state.player_right_left == -2
+            else if game_state.player_right_left == -1
             {
                 d.draw_text("Leftward strike!", 10, 30, 20, Color::BLACK);
-                d.draw_rectangle(game_state.player_x - 35, game_state.player_y, 30, 5, Color::LIGHTGRAY);
+                d.draw_rectangle(game_state.player_x - 35, game_state.player_y - 2, 30, 5, Color::LIGHTGRAY);
             }
-            else if game_state.player_right_left == 2
+            else if game_state.player_right_left == 1
             {
                 d.draw_text("Rightward strike!", 10, 30, 20, Color::BLACK);
-                d.draw_rectangle(game_state.player_x + 5, game_state.player_y, 30, 5, Color::LIGHTGRAY);
+                d.draw_rectangle(game_state.player_x + 5, game_state.player_y - 2, 30, 5, Color::LIGHTGRAY);
             }
         }
 
