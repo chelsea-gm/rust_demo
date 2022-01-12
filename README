@@ -1,0 +1,18 @@
+To build this project, make sure you have Rust installed,
+including the cargo package manager. In this directory, type:
+
+        cargo build
+
+This should execute without errors.
+After building, you may execute the demo. To do this, type:
+
+        ./target/debug/rust_demo
+
+To build for release, type:
+
+        cargo build --release
+
+Then, the release executable can be found here:
+
+        ./target/release/rust_demo
+
