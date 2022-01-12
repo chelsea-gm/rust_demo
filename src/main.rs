@@ -45,6 +45,23 @@ fn get_next_color(player_color: Color) -> Color
     return Color::BLACK;
 }
 
+// update_pos - calculate new character position on one dimension
+fn update_pos(pos: i32, delta: i32, screen_bound: i32) -> i32
+{
+    if pos + delta < 0
+    {
+        return pos;
+    }
+
+    if pos + delta > screen_bound
+    {
+        return pos;
+    }
+
+    return pos + delta;
+}
+
+
 // Application Entry Point
 fn main() {
     let screen_width = 800;
@@ -121,28 +138,29 @@ fn main() {
         // Move
         if rl.is_key_down(raylib::consts::KeyboardKey::KEY_W)
         {
-            game_state.player_down_up = -2;
-            game_state.player_right_left = 0;
-            game_state.player_y += player_speed * game_state.player_down_up;
-        }
-        else if rl.is_key_down(raylib::consts::KeyboardKey::KEY_A)
-        {
-            game_state.player_down_up = 0;
-            game_state.player_right_left = -2;
-            game_state.player_x += player_speed * game_state.player_right_left;
-        }
-        else if rl.is_key_down(raylib::consts::KeyboardKey::KEY_S)
-        {
-            game_state.player_down_up = 2;
-            game_state.player_right_left = 0;
-            game_state.player_y += player_speed * game_state.player_down_up;
-        }
-        else if rl.is_key_down(raylib::consts::KeyboardKey::KEY_D)
-        {
-            game_state.player_down_up = 0;
-            game_state.player_right_left = 2;
-            game_state.player_x += player_speed * game_state.player_right_left;
-        }
+             game_state.player_down_up = -2;
+             game_state.player_right_left = 0;
+             game_state.player_y = update_pos(game_state.player_y, player_speed * game_state.player_down_up, screen_height);
+         }
+         else if rl.is_key_down(raylib::consts::KeyboardKey::KEY_A)
+         {
+             game_state.player_down_up = 0;
+             game_state.player_right_left = -2;
+             game_state.player_x = update_pos(game_state.player_x, player_speed * game_state.player_right_left, screen_width);
+         }
+         else if rl.is_key_down(raylib::consts::KeyboardKey::KEY_S)
+         {
+             game_state.player_down_up = 2;
+             game_state.player_right_left = 0;
+             game_state.player_y = update_pos(game_state.player_y, player_speed * game_state.player_down_up, screen_height);
+         }
+         else if rl.is_key_down(raylib::consts::KeyboardKey::KEY_D)
+         {
+             game_state.player_down_up = 0;
+             game_state.player_right_left = 2;
+             game_state.player_x = update_pos(game_state.player_x, player_speed * game_state.player_right_left, screen_width);
+         }
+        
 
         // Now, draw...
 
